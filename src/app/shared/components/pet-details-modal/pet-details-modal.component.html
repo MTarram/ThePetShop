@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Pet Details</h2>
+<div class="row">
+    <div class="col">
+        <label>Name</label>
+        <input class="form-control" type="text" value="{{data.name | titlecase}}" readonly />
+    </div>
+    <div class="col">
+        <label>ID</label>
+        <input class="form-control" type="text" value="{{data.id}}" readonly />
+    </div>
+</div>
+<div class="row my-3">
+    <div class="col">
+        <label>Category</label>
+        <input class="form-control" type="text" value="{{data.category?.name | titlecase}}" readonly />
+    </div>
+    <div class="col">
+        <label>Photos</label>
+        <input *ngFor="let photo of data.photoUrls" class="form-control" type="text" value="{{photo}}" readonly />
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <label>Tags</label>
+        <input *ngFor="let tag of data.tags" class="form-control" type="text" value="{{tag.name}}" readonly />
+    </div>
+    <div class="col">
+        <label>Status</label>
+        <input class="form-control" type="text" value="{{data.status | titlecase}}" readonly />
+    </div>
+</div>
+<!-- <div class="row" *ngIf="data.photoUrls">
+    <div class="col" *ngFor="let photo of data.photoUrls">
+        <img src="{{photo}}" alt="{{photo}}">
+    </div>
+</div> -->
+<div mat-dialog-actions>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+</div>

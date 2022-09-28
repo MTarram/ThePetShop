@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row my-5">
+        <div class="col">
+            <h1>ALL PETS</h1>
+        </div>
+        <div class="col-auto">
+            <label for="status" class="col-form-label">Status:</label>
+        </div>
+        <div class="col-auto">
+            <select class="form-select" id="status" #currentStatus (change)="onStatusChange(currentStatus.value)">
+                <option *ngFor="let status of allStatus" value="{{status}}">{{status | titlecase}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="mat-elevation-z8 demo-table">
+                <table mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row (click)="onRowClicked(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

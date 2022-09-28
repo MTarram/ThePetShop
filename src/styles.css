@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.active {
+    color: #bbbcbd !important;
+    border-bottom: 2px solid #bbbcbd !important;
+}
+
+.customBtn {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border: none;
+    color: white;
+    background-color: #18151f;
+    width: 17rem;
+    height: 3.5rem;
+    cursor: pointer !important;
+    transition: 0.3s;
+}
+
+.customBtn:hover {
+    background-color: #013459;
+    transition: 0.3s;
+}
+
+.customBtn:disabled {
+    background-color: rgb(132, 132, 132);
+    cursor: not-allowed !important;
+}
