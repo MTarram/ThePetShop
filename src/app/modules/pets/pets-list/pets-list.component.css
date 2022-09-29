@@ -1,3 +1,5 @@
+/* Table Styles Start */
+
 table {
     width: 100%;
 }
@@ -23,3 +25,15 @@ table {
     opacity: 0.7;
     cursor: pointer;
 }
+
+/* Table Styles End */
+
+/* Spinner Stlyes Start */
+.spinnerStyles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* Spinner Stlyes End */

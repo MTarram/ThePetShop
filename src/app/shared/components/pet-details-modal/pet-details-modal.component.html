@@ -29,11 +29,12 @@
         <input class="form-control" type="text" value="{{data.status | titlecase}}" readonly />
     </div>
 </div>
-<!-- <div class="row" *ngIf="data.photoUrls">
-    <div class="col" *ngFor="let photo of data.photoUrls">
-        <img src="{{photo}}" alt="{{photo}}">
+<div class="row mt-3" *ngIf="data.photoUrls">
+    <label>Photo Preview:</label>
+    <div class="col d-flex justify-content-center align-items-center" *ngFor="let photo of data.photoUrls">
+        <img src="{{photo}}" alt="{{photo}}" width="230" style="display: block;">
     </div>
-</div> -->
+</div>
 <div mat-dialog-actions>
     <button mat-stroked-button mat-dialog-close>Close</button>
 </div>

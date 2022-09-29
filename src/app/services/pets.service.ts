@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,9 +10,19 @@ import { Pet } from '../shared/models/pet.model';
 export class PetsService {
   private static allPetsAPI = environment.petsURL + '/findByStatus?status=';
 
+  headers = new HttpHeaders({
+    api_key: 'special-key',
+  });
+
   constructor(private http: HttpClient) {}
 
   getAllPets(status: string): Observable<Pet[]> {
     return this.http.get<Pet[]>(PetsService.allPetsAPI + status);
+  }
+
+  addNewPet(petData: any): Observable<any> {
+    return this.http.post<any>(environment.petsURL, petData, {
+      headers: this.headers,
+    });
   }
 }

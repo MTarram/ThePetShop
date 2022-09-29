@@ -12,9 +12,11 @@ import { Pet } from 'src/app/shared/models/pet.model';
   styleUrls: ['./pets-list.component.css'],
 })
 export class PetsListComponent implements OnInit {
+  isLoading = true;
   allPets: Pet[] = [];
   clickedRow: Pet = {};
   allStatus = ['available', 'pending', 'sold'];
+
   dataSource = new MatTableDataSource<Pet>(this.allPets);
 
   displayedColumns: string[] = ['id', 'name'];
@@ -38,10 +40,19 @@ export class PetsListComponent implements OnInit {
   }
 
   updateTableData(status: string): void {
-    this.petsService.getAllPets(status).subscribe((data) => {
-      this.allPets = data;
-      this.dataSource = new MatTableDataSource<Pet>(this.allPets);
-      this.dataSource.paginator = this.paginator;
-    });
+    this.isLoading = true;
+    this.petsService.getAllPets(status).subscribe(
+      (data) => {
+        this.isLoading = false;
+        this.allPets = data;
+        this.paginator.pageIndex = 0;
+        this.dataSource = new MatTableDataSource<Pet>(this.allPets);
+        this.dataSource.paginator = this.paginator;
+      },
+      (err) => {
+        this.isLoading = false;
+        alert('Error Loading Data!');
+      }
+    );
   }
 }
