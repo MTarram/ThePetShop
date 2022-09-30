@@ -8,9 +8,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetsListComponent } from './pets-list/pets-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AddPetComponent, PetsListComponent],
+  declarations: [AddPetComponent, PetsListComponent, DashboardComponent],
   imports: [
     CommonModule,
     PetsRoutingModule,

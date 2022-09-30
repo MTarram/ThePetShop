@@ -1,7 +1,7 @@
 <div class="container-fluid py-3">
     <div class="row pt-5 pb-3">
         <div class="col text-center">
-            <a class="navbar-brand" routerLink="dashboard">THE PET SHOP</a>
+            <a class="navbar-brand" routerLink="/pets">THE PET SHOP</a>
         </div>
         <br>
     </div>
@@ -16,7 +16,7 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item px-5">
-                            <a class="nav-link" routerLink="pets" routerLinkActive="active"
+                            <a class="nav-link" routerLink="pets/all" routerLinkActive="active"
                                 [routerLinkActiveOptions]="{exact: true}">All Pets</a>
                         </li>
                         <li class="nav-item px-5">
@@ -27,5 +27,18 @@
                 </div>
             </div>
         </nav>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <a class="nav-link logoutButton" (click)="onLogout()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="padding-top: 5px">chevron_left</mat-icon>
+                Logout
+                <div *ngIf="isLoggingOut" class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </a>
+        </div>
     </div>
 </div>

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   petsURL: 'https://petstore.swagger.io/v2/pet',
+  userURL: 'https://petstore.swagger.io/v2/user'
 };
 
 /*

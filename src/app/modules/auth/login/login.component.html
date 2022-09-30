@@ -1,1 +1,89 @@
-<p>login works!</p>
+<div class="login">
+    <div class="container">
+        <div class="row h-100">
+            <!-- LOADING SPINNER START -->
+            <div *ngIf="isLoading" class="d-flex justify-content-center">
+                <div class="spinner-grow text-light" style="width: 3rem; height: 3rem; margin-right: 3px;"
+                    role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- LOADING SPINNER END -->
+            <div class="text-center my-3">
+                <img class="img-fluid" src="assets/avatar.svg" width="200" height="200">
+                <h2 class="title mt-3">welcome</h2>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <!-- LOGIN FORM START -->
+                <form style="min-width: 450px; padding: 0 10px;" *ngIf="isLogin" (ngSubmit)="onSubmit('login')"
+                    [formGroup]="loginForm">
+                    <div class="form-floating mb-3">
+                        <input type="text" placeholder="Username" class="form-control" id="usernameInput"
+                            formControlName="username">
+                        <label for="usernameInput" class="form-label">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+                            formControlName="password">
+                        <label for="passwordInput" class="form-label">Password</label>
+                        <span class="form-text float-end fw-bold">Don't have an account?<a (click)="onFormSwitch()">
+                                Sign up!</a></span>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary" [disabled]="loginForm.invalid">LOGIN
+                        </button>
+                    </div>
+                </form>
+                <!-- LOGIN FORM END -->
+
+                <!-- SIGNUP FORM START -->
+                <form style="min-width: 450px; padding: 0 10px;" *ngIf="!isLogin" (ngSubmit)="onSubmit('signup')"
+                    [formGroup]="signupForm">
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                                formControlName="firstname">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                                formControlName="lastname">
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="User name" aria-label="User name"
+                                formControlName="username">
+                        </div>
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                                formControlName="email">
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col">
+                            <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                                formControlName="password">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Phone" aria-label="Phone"
+                                formControlName="phone">
+                            <span class="form-text float-end fw-bold">Already have an account?<a
+                                    (click)="onFormSwitch()">
+                                    Login!</a></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary" [disabled]="signupForm.invalid">SIGN UP
+                        </button>
+                    </div>
+                </form>
+                <!-- SIGNUP FORM END -->
+            </div>
+        </div>
+    </div>
+</div>

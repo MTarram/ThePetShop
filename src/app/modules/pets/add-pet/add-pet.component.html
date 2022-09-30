@@ -1,5 +1,5 @@
-<div class="container">
-    <h1 class="my-5">ADD NEW PET</h1>
+<div class="container" style="padding-right: 24px;">
+    <h1 class="my-5 fw-bold">ADD NEW PET</h1>
     <div class="row">
         <div class="col">
             <form [formGroup]="petForm" (ngSubmit)="onSubmit()" class="row g-3">
@@ -28,7 +28,7 @@
                         <option *ngFor="let status of allStatus" value="{{status}}">{{status | titlecase}}</option>
                     </select>
                 </div>
-                <div class="col-12 mt-5 text-center">
+                <div class="col-12 my-5 text-center">
                     <button type="submit" class="customBtn" [disabled]="!petForm.valid">Add Pet</button>
                 </div>
             </form>

@@ -10,10 +10,6 @@ import { Pet } from '../shared/models/pet.model';
 export class PetsService {
   private static allPetsAPI = environment.petsURL + '/findByStatus?status=';
 
-  headers = new HttpHeaders({
-    api_key: 'special-key',
-  });
-
   constructor(private http: HttpClient) {}
 
   getAllPets(status: string): Observable<Pet[]> {
@@ -21,8 +17,6 @@ export class PetsService {
   }
 
   addNewPet(petData: any): Observable<any> {
-    return this.http.post<any>(environment.petsURL, petData, {
-      headers: this.headers,
-    });
+    return this.http.post<any>(environment.petsURL, petData);
   }
 }
