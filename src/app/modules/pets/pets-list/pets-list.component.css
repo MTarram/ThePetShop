@@ -5,7 +5,7 @@ table {
 }
 
 .mat-column-id {
-    width: 30px;
+    width: 300px;
     border-right: 1px solid #18151F;
     padding-right: 24px;
     font-size: 18px;
@@ -13,7 +13,7 @@ table {
     font-style: italic;
 }
 
-.mat-column-name {
+.mat-column-name, .mat-column-status {
     font-size: 18px;
     text-align: center;
     font-style: italic;

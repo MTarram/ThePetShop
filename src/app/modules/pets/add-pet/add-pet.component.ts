@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PetsService } from 'src/app/services/pets.service';
+import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { AppState } from 'src/app/shared/models/appstate.model';
+import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { selectAppState } from 'src/app/shared/store/app.selector';
+import { invokeAddPetAPI } from '../store/pets.actions';
 
 @Component({
   selector: 'app-add-pet',
@@ -12,7 +17,11 @@ export class AddPetComponent implements OnInit {
   petForm!: FormGroup;
   allStatus = ['available', 'pending', 'sold'];
 
-  constructor(private petsService: PetsService) {}
+  constructor(
+    private store: Store,
+    private appStore: Store<AppState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.petForm = new FormGroup({
@@ -35,16 +44,33 @@ export class AddPetComponent implements OnInit {
       status: this.petForm.value.status,
     };
 
-    this.petsService.addNewPet(petData).subscribe(
-      (result) => {
+    // NGRX APPROACH WITH STATE
+    this.store.dispatch(invokeAddPetAPI({ payload: { ...petData } }));
+    let appStatus$ = this.appStore.pipe(select(selectAppState));
+    appStatus$.subscribe((data) => {
+      console.log(data);
+      if (data.apiStatus === 'success') {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiStatus: '', apiResponseMessage: '' } })
+        );
         this.isLoading = false;
         alert('Pet Added Successfully!');
         this.petForm.reset();
-      },
-      (err) => {
-        this.isLoading = false;
-        alert('Error Adding Pet!');
+        this.router.navigate(['/pets/all']);
       }
-    );
+    });
+
+    // NORMAL APPROACH WITHOUT STATE
+    // this.petsService.addNewPet(petData).subscribe(
+    //   (result) => {
+    //     this.isLoading = false;
+    //     alert('Pet Added Successfully!');
+    //     this.petForm.reset();
+    //   },
+    //   (err) => {
+    //     this.isLoading = false;
+    //     alert('Error Adding Pet!');
+    //   }
+    // );
   }
 }

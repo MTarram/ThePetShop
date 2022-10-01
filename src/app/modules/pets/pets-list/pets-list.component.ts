@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { select, Store } from '@ngrx/store';
 import { PetsService } from 'src/app/services/pets.service';
 import { PetDetailsModalComponent } from 'src/app/shared/components/pet-details-modal/pet-details-modal.component';
 import { Pet } from 'src/app/shared/models/pet.model';
+import { invokePetsAPI } from '../store/pets.actions';
+import { selectPets } from '../store/pets.selector';
 
 @Component({
   selector: 'app-pets-list',
@@ -14,16 +17,22 @@ import { Pet } from 'src/app/shared/models/pet.model';
 export class PetsListComponent implements OnInit {
   isLoading = true;
   allPets: Pet[] = [];
+  // pets$ = this.store.pipe(select(selectPets));
+
   clickedRow: Pet = {};
   allStatus = ['available', 'pending', 'sold'];
 
   dataSource = new MatTableDataSource<Pet>(this.allPets);
 
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'status'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private petsService: PetsService, public dialog: MatDialog) {}
+  constructor(
+    private petsService: PetsService,
+    private store: Store,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.updateTableData('available');
@@ -40,6 +49,7 @@ export class PetsListComponent implements OnInit {
   }
 
   updateTableData(status: string): void {
+    // this.store.dispatch(invokePetsAPI({ payload: status }));
     this.isLoading = true;
     this.petsService.getAllPets(status).subscribe(
       (data) => {
