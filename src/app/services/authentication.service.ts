@@ -1,12 +1,13 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private route: Router, private location: Location) {}
+  loggedIn: boolean = false;
+
+  constructor(private location: Location) {}
 
   public isLoggedIn(): boolean {
     if (this.location.path() === '/login') {
@@ -14,5 +15,17 @@ export class AuthenticationService {
     } else {
       return false;
     }
+  }
+
+  checkIfAuthenticated(): boolean {
+    return this.loggedIn;
+  }
+
+  login() {
+    this.loggedIn = true;
+  }
+
+  logout() {
+    this.loggedIn = false;
   }
 }

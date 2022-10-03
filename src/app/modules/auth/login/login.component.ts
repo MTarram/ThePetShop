@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);
       this.userService.userLogin(this.loginForm.value).subscribe(
         () => {
+          this.authService.login();
           this.isLoading = false;
           this.router.navigate(['/pets']);
         },

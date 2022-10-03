@@ -4,19 +4,23 @@ table {
     width: 100%;
 }
 
+mat-paginator, .mat-column-id, .mat-column-name, .mat-column-status {
+    font-family: "Poppins", sans-serif !important;
+
+}
+
 .mat-column-id {
     width: 300px;
     border-right: 1px solid #18151F;
     padding-right: 24px;
     font-size: 18px;
     text-align: start;
-    font-style: italic;
+
 }
 
 .mat-column-name, .mat-column-status {
     font-size: 18px;
     text-align: center;
-    font-style: italic;
 }
 
 .mat-row:hover .mat-cell {
@@ -37,3 +41,7 @@ table {
 }
 
 /* Spinner Stlyes End */
+
+select:hover {
+    cursor: pointer;
+}

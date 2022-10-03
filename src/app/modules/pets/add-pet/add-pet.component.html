@@ -1,5 +1,10 @@
 <div class="container" style="padding-right: 24px;">
-    <h1 class="my-5 fw-bold">ADD NEW PET</h1>
+    <div class="row my-5">
+        <div class="col">
+            <h1 style="font-weight: 700; margin-bottom: 0px;">Add New Pet</h1>
+            <small>Here you can add your own pet with all the necessary information.</small>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <form [formGroup]="petForm" (ngSubmit)="onSubmit()" class="row g-3">

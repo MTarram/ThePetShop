@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'pets',
+    canActivate: [],
     loadChildren: () =>
       import('./modules/pets/pets.module').then((m) => m.PetsModule),
   },
