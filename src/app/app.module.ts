@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './shared/store/app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { appReducer } from './shared/store/app.reducer';
     HeaderComponent,
   ],
   imports: [
-    StoreModule.forRoot({myappstate: appReducer}),
+    StoreModule.forRoot({ myappstate: appReducer }),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
